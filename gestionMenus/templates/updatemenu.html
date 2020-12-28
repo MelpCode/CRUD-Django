@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD DJANGO | melpCode</title>
+    <link rel="stylesheet" href="https://bootswatch.com/4/lux/bootstrap.min.css">
+</head>
+<body>
+    
+    {% include 'partials/navigation.html'%} <!--Este es un ejemplo de plantillas incrustadas-->
+    
+    <div class="container p-4 ">
+        <div class="row">
+            <div class="col-md-4 offset-md-3">
+                <div class="card">
+                    <div class="card-body">    
+                        <form action='/update/{{menu.id}}' method="POST">{% csrf_token %}
+                            <div class="form-group">
+                                <input type="text"
+                                    name="entrada" 
+                                    placeholder="Ingrese entrada"
+                                    class="form-control"
+                                    value= "{{menu.entrada}}"
+                                >
+                            </div>
+                            <div class="form-group">
+                                <input type="text"
+                                    name="fondo" 
+                                    placeholder="Ingrese fondo"
+                                    class="form-control"
+                                    value= "{{menu.fondo}}"
+                                >
+                            </div>
+                            <div class="form-group">
+                                <input type="text"
+                                    name="postre" 
+                                    placeholder="Ingrese postre"
+                                    class="form-control"
+                                    value= "{{menu.postre}}"
+                                >
+                            </div>
+                            <div class="form-group">
+                                <input type="text"
+                                    name="precio" 
+                                    placeholder="Ingrese precio"
+                                    class="form-control"
+                                    value= "{{menu.precio}}"
+                                >
+                            </div>
+                            <button type="submit"
+                                class="btn btn-primary btn-block">
+                                Actualizar menu
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD DJANGO | melpCode</title>
+    <link rel="stylesheet" href="https://bootswatch.com/4/lux/bootstrap.min.css">
+</head>
+<body>
+    
+    {% include 'partials/navigation.html'%} <!--Este es un ejemplo de plantillas incrustadas-->
+    
+    <div class="container p-4 ">
+
+        {% include 'partials/message_success.html' %}
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">    
+                        <form action='/menu/' method="POST">{% csrf_token %} 
+                            <div class="form-group">
+                                <input type="text"
+                                    name="entrada" 
+                                    placeholder="Ingrese entrada"
+                                    class="form-control"
+                                    value= "{{menu.entrada}}"
+                                >
+                            </div>
+                            <div class="form-group">
+                                <input type="text"
+                                    name="fondo" 
+                                    placeholder="Ingrese fondo"
+                                    class="form-control"
+                                    value= "{{menu.fondo}}"
+                                >
+                            </div>
+                            <div class="form-group">
+                                <input type="text"
+                                    name="postre" 
+                                    placeholder="Ingrese postre"
+                                    class="form-control"
+                                    value= "{{menu.postre}}"
+                                >
+                            </div>
+                            <div class="form-group">
+                                <input type="text"
+                                    name="precio" 
+                                    placeholder="Ingrese precio"
+                                    class="form-control"
+                                    value= "{{menu.precio}}"
+                                >
+                            </div>
+                            <button type="submit"
+                                class="btn btn-primary btn-block">
+                                {% if status == 'edit' %}
+                                    actualizar menu
+                                {% else %}
+                                    guardar menu
+                                {% endif %}
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <table class="table table-border-secondary table-hover">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Entrada</th>
+                            <th>Fondo</th>
+                            <th>Postre</th>
+                            <th>Precio</th>
+                            <th>Operacion</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        {% for menu in menus %}     
+                        <tr>
+                            <td>{{ menu.id }}</td>
+                            <td>{{ menu.entrada }}</td>
+                            <td>{{ menu.fondo }}</td>
+                            <td>{{ menu.postre }}</td>
+                            <td>{{ menu.precio }}</td>
+                            <td>
+                                <a href="/menudelete/{{menu.id}}" 
+                                    class="btn btn-danger btn-sm">Delete</a>
+                                <a href="/menuedit/{{menu.id}}" class="btn btn-info btn-sm">Edit</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" 
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" 
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" 
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" 
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" 
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" 
+        crossorigin="anonymous"></script>
+</body>
+</html>
